@@ -60,19 +60,10 @@ public class SellerDaoJDBC implements SellerDao{
 			
 			// Criando os objetos da OO
 			if (rs.next()) {
-				Department dep = new Department();
-				dep.setId(rs.getInt("DepartmentId"));
-				dep.setName(rs.getString("DepName"));
+				Department dep = instantiateDepartment(rs);				
+				Seller seller = instantiateSeller(rs, dep);
 				
-				Seller seller = new Seller();
-				seller.setId(rs.getInt("Id"));
-				seller.setName(rs.getString("Name"));
-				seller.setEmail(rs.getString("Email"));
-				seller.setBaseSalary(rs.getDouble("BaseSalary"));
-				seller.setBirthDate(rs.getDate("BirthDate"));
-				seller.setDepartment(dep);
 				return seller;
-				
 			}
 			return null;  // se o rs não retornar nada, o método retornará nulo.
 		}
@@ -83,9 +74,38 @@ public class SellerDaoJDBC implements SellerDao{
 		finally {
 			DB.closeStatement(ps);
 			DB.closeResultSet(rs);
-		}
-		
-		
+		}		
+	}
+	
+	/**
+	 * Método auxiliar para instanciar os vendedores
+	 * @param rs
+	 * @param dep
+	 * @return seller
+	 * @throws SQLException
+	 */
+	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+		Seller seller = new Seller();
+		seller.setId(rs.getInt("Id"));
+		seller.setName(rs.getString("Name"));
+		seller.setEmail(rs.getString("Email"));
+		seller.setBaseSalary(rs.getDouble("BaseSalary"));
+		seller.setBirthDate(rs.getDate("BirthDate"));
+		seller.setDepartment(dep);
+		return seller;
+	}
+
+	/**
+	 * Método auxiliar para instanciar os departamentos
+	 * @param rs
+	 * @return dep
+	 * @throws SQLException
+	 */
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department dep = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
 	}
 
 	@Override
