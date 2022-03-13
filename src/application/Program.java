@@ -1,5 +1,7 @@
 package application;
 
+import model.entities.Department;
+
 public class Program {
 
 	public static void main(String[] args) {
@@ -13,6 +15,10 @@ public class Program {
 		 * Cada DAO será definido por uma interface.
 		 * A injeção de dependência pode ser feita por meio do padrao de projeto Factory.
 		 */
+		
+		Department obj = new Department(1, "Books");
+		
+		System.out.println(obj);
 	}
 
 }
