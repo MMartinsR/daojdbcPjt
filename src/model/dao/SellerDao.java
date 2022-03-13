@@ -4,6 +4,12 @@ import java.util.List;
 
 import model.entities.Seller;
 
+/**
+ * This interface is the DAO model to Seller class 
+ * @author Mariana
+ *
+ */
+
 public interface SellerDao {
 	
 	void insert(Seller seller);

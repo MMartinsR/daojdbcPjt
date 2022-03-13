@@ -4,6 +4,12 @@ import java.util.List;
 
 import model.entities.Department;
 
+/**
+ * This interface is the DAO model to Department class 
+ * @author Mariana
+ *
+ */
+
 public interface DepartmentDao {
 	
 	void insert(Department department);
