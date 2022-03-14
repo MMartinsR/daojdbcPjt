@@ -30,6 +30,14 @@ public class Program {
 		List<Seller> list = sellerDao.findByDepartment(new Department(2, null));
 		for (Seller obj : list) {
 			System.out.println(obj);
+			
+		}
+		
+		System.out.println("\n=== TEST 3: seller findByAll ====");
+		List<Seller> list2 = sellerDao.findAll();
+		for (Seller obj : list2) {
+			System.out.println(obj);
+			
 		}
 		
 	}
